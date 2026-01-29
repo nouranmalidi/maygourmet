@@ -1,0 +1,23 @@
+{
+  "name": "maygourmet",
+  "version": "1.0.0",
+  "description": "May Gourmet est une plateforme de réservation de plats et passer commande.",
+  "homepage": "https://github.com/nouranmalidi/maygourmet#readme",
+  "bugs": {
+    "url": "https://github.com/nouranmalidi/maygourmet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nouranmalidi/maygourmet.git"
+  },
+  "license": "ISC",
+  "author": "\"\"",
+  "type": "commonjs",
+  "main": "serveur.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
