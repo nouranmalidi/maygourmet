@@ -18,8 +18,8 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 
-
-
+// Je précise que j'utilise le dossier 'public' qui contient les fichiers statics
+app.use(express.static('public'));
 
 // API ROUTE pour la racine 
 app.get('/', (req,res) => {   // Pas de next car c'est des route et pas des middleware
