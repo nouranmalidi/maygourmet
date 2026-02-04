@@ -46,3 +46,44 @@ UPDATE equipe
 SET nom = 'Bernard',
   mail = 'beno976@gmail.com'
 WHERE id = 2
+
+CREATE TABLE plat (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Burger_du_chef VARCHAR(155) NOT NULL, 
+    Burger_poulet VARCHAR(155) NOT NULL,  
+    sauce VARCHAR(100), 
+    Burger_steak VARCHAR(100) NOT NULL,
+    Pizza VARCHAR(80) NOT NULL,
+    Glace VARCHAR(150) NOT NULL,
+    presentation_du_plat VARCHAR(255)
+);
+
+--VARCHAR est pour les string equivaut au nombre de caractère utilisable--
+--NOT NULL c'est-à-dire qu'il est obligatoire de mettre un champ--
+-- Ce champ là n'est pas obligatoire--
+
+CREATE TABLE fournisseur (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    Prix_poulet VARCHAR(155) NOT NULL, 
+    Prix_steak VARCHAR(155) NOT NULL,  
+    Prix_pizza VARCHAR(100) NOT NULL,
+    Prix_glace VARCHAR(80) NOT NULL,
+    presentation_du_fournisseur VARCHAR(255)
+);
+
+INSERT INTO fournisseur (Prix_poulet,Prix_steak,Prix_pizza,Prix_glace,presentation_du_fournisseur,nom_fournisseur) VALUES 
+('8.4$ kg', '20$ kg', '8$ unité', '3$ unité', 'Fournissuer acceptant les payment différé mais coriace sur les prix', 'AHMED ABDOU');
+
+--INT c'est pour metrre les chiffres 
+CREATE TABLE plat (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom_du_plat VARCHAR(155) NOT NULL, 
+    ingrédient VARCHAR(155) NOT NULL,  
+    prix INT(100) NOT NULL, 
+    sauce VARCHAR(100),
+    description_du_plat VARCHAR(255)
+);
+
+-- Pour les init on mets des point au lieu des virgules pour le prix et on n'itulise pas de devise d'argent ($,£)
+INSERT INTO plat (nom_du_plat,ingrédient,prix,sauce,description_du_plat) VALUES 
+('Burger spécial du chef', 'salade,tomate,oignon,viande de veau,pain,cornichon', '13.50', 'mayonnaise et piment','Le meilleur plat du chef il le réalise depuis plus de 10 ans.');
