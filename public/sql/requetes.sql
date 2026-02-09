@@ -69,6 +69,7 @@ CREATE TABLE fournisseur (
     Prix_pizza VARCHAR(100) NOT NULL,
     Prix_glace VARCHAR(80) NOT NULL,
     presentation_du_fournisseur VARCHAR(255)
+    FOREIGN KEY (plat_id) REFERENCES plat(id)
 );
 
 INSERT INTO fournisseur (Prix_poulet,Prix_steak,Prix_pizza,Prix_glace,presentation_du_fournisseur,nom_fournisseur) VALUES 
