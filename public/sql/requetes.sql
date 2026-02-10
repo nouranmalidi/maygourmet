@@ -48,7 +48,7 @@ SET nom = 'Bernard',
 WHERE id = 2
 
 CREATE TABLE plat (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    plat_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Burger_du_chef VARCHAR(155) NOT NULL, 
     Burger_poulet VARCHAR(155) NOT NULL,  
     sauce VARCHAR(100), 
@@ -61,16 +61,37 @@ CREATE TABLE plat (
 --VARCHAR est pour les string equivaut au nombre de caractère utilisable--
 --NOT NULL c'est-à-dire qu'il est obligatoire de mettre un champ--
 -- Ce champ là n'est pas obligatoire--
-
+-- Voici comment mettre une clé étrangère, j'associe la table fournisseur a la table produit en utilisant l'id_produit !
+    -- l'id produit provient de la table produit
+    -- REFERENCES indique la table source
 CREATE TABLE fournisseur (
-    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Prix_poulet VARCHAR(155) NOT NULL, 
-    Prix_steak VARCHAR(155) NOT NULL,  
-    Prix_pizza VARCHAR(100) NOT NULL,
-    Prix_glace VARCHAR(80) NOT NULL,
-    presentation_du_fournisseur VARCHAR(255)
-    FOREIGN KEY (plat_id) REFERENCES plat(id)
+    ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom VARCHAR (155) NOT NULL,
+    responsable VARCHAR (155) NOT NULL,
+    tel VARCHAR (55),
+    mail VARCHAR (155) NOT NULL,
+    adresse_postale VARCHAR (300),
+    FOREIGN KEY (id_produit) REFERENCES produit(id_produit)
 );
+
+-- Par default boolean est faux
+CREATE TABLE produit (
+    id_produit INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR (100) NOT NULL,
+    presentation VARCHAR(155),
+    prix INT NOT NULL,
+    origin VARCHAR (30) NOT NULL,
+    categorie VARCHAR (30),
+    disponibilite BOOLEAN DEFAULT False, 
+    type_culture VARCHAR(30)
+    id_fournisseur INT NOT NULL,
+    FOREIGN KEY (id_fournisseur) REFERENCES fournisseur (id_fournisseur)
+);
+
+
+
+
+
 
 INSERT INTO fournisseur (Prix_poulet,Prix_steak,Prix_pizza,Prix_glace,presentation_du_fournisseur,nom_fournisseur) VALUES 
 ('8.4$ kg', '20$ kg', '8$ unité', '3$ unité', 'Fournissuer acceptant les payment différé mais coriace sur les prix', 'AHMED ABDOU');
@@ -88,3 +109,10 @@ CREATE TABLE plat (
 -- Pour les init on mets des point au lieu des virgules pour le prix et on n'itulise pas de devise d'argent ($,£)
 INSERT INTO plat (nom_du_plat,ingrédient,prix,sauce,description_du_plat) VALUES 
 ('Burger spécial du chef', 'salade,tomate,oignon,viande de veau,pain,cornichon', '13.50', 'mayonnaise et piment','Le meilleur plat du chef il le réalise depuis plus de 10 ans.');
+
+
+
+-- Pour mettre une clé étrangère avec alter table
+alter table fournisseur
+add id_produit int not null,
+add FOREIGN KEY (id_produit) REFERENCES produit(id_produit);
