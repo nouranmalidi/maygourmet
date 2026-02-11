@@ -47,6 +47,15 @@ SET nom = 'Bernard',
   mail = 'beno976@gmail.com'
 WHERE id = 2
 
+
+UPDATE produit
+SET categorie = 'viande'
+type_culture = 'non bio'
+WHERE id = 1
+
+
+
+
 CREATE TABLE plat (
     plat_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Burger_du_chef VARCHAR(155) NOT NULL, 
@@ -116,3 +125,22 @@ INSERT INTO plat (nom_du_plat,ingrédient,prix,sauce,description_du_plat) VALUES
 alter table fournisseur
 add id_produit int not null,
 add FOREIGN KEY (id_produit) REFERENCES produit(id_produit);
+
+
+--Méthode pour supprimer une clé étrangère
+--Désactivation de la vérification des clé étrangère
+SET FOREIGN_KEY_CHEKS=0;
+-- Supprimer la table fournisseur
+drop table fournisseur;
+-- Réactivation de la clé étrangère
+SET FOREIGN_KEY_CHEKS=1;
+
+
+-- Sélectionner depuis la colonne prix dans la table produit des prix inf a 10
+select * from produit where prix < 10 ; -- Un string doit être entre parenthèse
+
+-- Séléctionner depuis la colonne origin dans la table produit un mot qui commence par MAURI
+select * from produit where origin like 'Mauri%';
+
+-- Séléctionner depuis la colonne catégorie dans la table produit les viandes
+select * from produit where categorie = 'viande';
