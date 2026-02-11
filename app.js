@@ -4,11 +4,27 @@
 const console = require('console');
 const express = require ('express');
 
+// J'importe le pilote Mysql2 utlisé pour intorroger la BDD MySQL
+const mysql2 = require('mysql2');
 
+// J'importe le pilote express-myconnexion utilisé pour se connecter à la BDD
+const myConnection = require('express-myconnection');
 
 // J'initialise une application express
 const app = express();
 
+
+// Je configure les éléments attendus pour me connecter à MySQL 
+const optionsConnectionBaseDeDonnees = {
+  host: "localhost",
+  user: "root",
+  password: "Sardines123@",
+  database: "maygourmet",
+  port: "3306"
+};
+
+// Middleware pour se connecter à la BDD MySQL, "pool" est une stratégie de connection à la BDD MySQL
+app.use(myConnection(mysql2, optionsConnectionBaseDeDonnees, "pool"));
 
 // Je précise que les vues sont dans le dossier views
 app.set('views', './views'); 
@@ -31,6 +47,8 @@ app.get('/', (req,res) => {   // Pas de next car c'est des route et pas des midd
 // API ROUTE pour la page d'accueil
 app.get('/api/accueil', (req, res) => {
   console.log("Je passe dans /api/accueil");
+
+
 
   res.render('accueil'); //res.render chercher un fichier dans ./views
 
