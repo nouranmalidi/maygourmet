@@ -13,10 +13,19 @@
 
 <h1>Mon equipe de choc</h1>
 
-<p>Bacar 
-    Colo
-    Daoud
-    Kamel
-</p>
+<% resultatEquipe.forEach(resultat => { %>
+    <div class="card">
+  <img src="/images/avatar1.png" alt="Avatar" style="width:75%">
+  <div class="container">
+    <h4><b><%= resultat.nom %> <%= resultat.prenom %></b></h4>
+    <p> <%= resultat.poste %> </p>
+  </div>
+</div>
+    
+<% }) %>
+
+
+
+
 </body>
 </html>

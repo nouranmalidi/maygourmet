@@ -49,8 +49,25 @@ app.get('/api/accueil', (req, res) => {
   console.log("Je passe dans /api/accueil");
 
 
+// 1. Je me connecte à la BDD grâce à la méthode getConnection()
+  req.getConnection((erreur, connection) => {
+    if (erreur) { // Je vérifie si il y'a une erreur lors de la connexion à la BDD
+      console.log(erreur);
+    } else {
+      connection.query("SELECT * FROM equipe", [], (err,resultatEquipe) => {
+        if (err) {
+          console.log("Erreur dans la requête SQL SELECT : ", err);
+        } else {
+          console.log("Mon équipe : ", resultatEquipe);
 
-  res.render('accueil'); //res.render chercher un fichier dans ./views
+          // Je retourne au client le résultat de la requête SQL
+          res.render ("equipe", {resultatEquipe});
+        }
+      });
+    }
+  });
+
+  //res.render('accueil'); //res.render chercher un fichier dans ./views
 
   // Le type d'encodage du texte retourné en réponse
 //res.writeHead(200, { "content-type": "text/html;charset=utf-8"});
