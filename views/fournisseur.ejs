@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fournisseur de Maygourmet</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+    
+<div class="container">
+  <form action="/api/fournisseur" method="post"> <!--l'action c'est la route de l'api et methode c'est post car on modifie-->
+
+    <label for="fname">Nom</label>
+    <input type="text" id="fname" name="firstname" placeholder="Nom de l'entreprise">
+
+    <label for="job">Responsable</label>
+    <input type="text" id="job" name="job" placeholder="Nom du responsable à contacter">
+
+    <label for="tphone">Téléphone</label>
+    <input type="text" id="tphone" name="tphone" placeholder="Numero de telephone">
+
+    <label for="email">Mail</label> <br> <br> 
+    <input type="email" id="email" name="email" placeholder="L'email de l'enseigne">  <br> <br>
+
+    <label for="madress">Adresse postale</label> 
+    <input type="text" id="madress" name="madress" placeholder="l'adresse postale de l'entreprise">
+
+    <label for="country">Territoire</label>
+    <select id="country" name="country">
+      <option value="mayotte">Mayotte (mayana)</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="pfournisseur">Présentation du fournisseur</label>
+    <textarea id="pfournisseur" name="pfournisseur" placeholder="Dites nous en plus" style="height:200px"></textarea>
+
+    <input type="submit" value="Enregistrer">
+
+  </form>
+</div>
+
+</body>
+</html>

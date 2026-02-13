@@ -13,6 +13,11 @@ const myConnection = require('express-myconnection');
 // J'initialise une application express
 const app = express();
 
+// Pour lire le JSON (si tu envoies du JSON via Postman ou un Fetch)
+app.use(express.json()); 
+
+// Pour lire les données d'un formulaire standard (URL-encoded)
+app.use(express.urlencoded({ extended: true }));
 
 // Je configure les éléments attendus pour me connecter à MySQL 
 const optionsConnectionBaseDeDonnees = {
@@ -90,5 +95,15 @@ app.get('/api/equipe', (req, res) => {
 
 
 
+
+// J'ajoute un fournisseur dans la table fournisseur. Pour cela, j'utilise la méthose POST
+app.post('/api/fournisseur', (req,res) => {
+  console.log("Corps de la requête : ", req.body);
+});
+
+// J'accède a la route grâce a ce code
+app.get('/api/fournisseur', (req,res) => {
+  res.render("fournisseur");
+});
 
 module.exports = app;
