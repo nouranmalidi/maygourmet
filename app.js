@@ -99,8 +99,35 @@ app.get('/api/equipe', (req, res) => {
 // J'ajoute un fournisseur dans la table fournisseur. Pour cela, j'utilise la méthose POST
 app.post('/api/fournisseur', (req,res) => {
   console.log("Corps de la requête : ", req.body);
-});
+  const nomFournisseur = req.body.firstname;
+  const responsableFournisseur = req.body.job;
+  const mailFournisseur = req.body.email;
+  const telFournisseur = req.body.tphone;
+  const adressePostaleFournisseur = req.body.madress;
 
+  const requeteSQL = "INSERT INTO fournisseur (nom, responsable, tel, mail, adresse_postale) values (?, ?, ?, ?, ?);";
+
+
+  const ordreChamps = [nomFournisseur,responsableFournisseur,telFournisseur,mailFournisseur,adressePostaleFournisseur];
+
+  // Je me connecte à la BDD 
+  req.getConnection((erreur,connection) => {
+    if(erreur) {
+      console.log("Erreur de connection à la BDD : ", erreur);
+    } else { // Si je réussi a me connecter à la BDD
+      connection.querry(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
+        if(err) {
+          console.log("Erreur d'ajout fournisseur: ", err);
+        } else {
+          console.log("Bravo! Nouveau fournisseur ajouté.");
+          // Je redirige vers la page d'accueil
+          res.status(300).redirect("/accueil");
+        };
+      });
+    };
+
+  });
+});
 // J'accède a la route grâce a ce code
 app.get('/api/fournisseur', (req,res) => {
   res.render("fournisseur");
