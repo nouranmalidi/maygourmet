@@ -115,13 +115,13 @@ app.post('/api/fournisseur', (req,res) => {
     if(erreur) {
       console.log("Erreur de connection à la BDD : ", erreur);
     } else { // Si je réussi a me connecter à la BDD
-      connection.querry(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
+      connection.query(requeteSQL, ordreChamps, (err, nouveauFournisseur) => {
         if(err) {
           console.log("Erreur d'ajout fournisseur: ", err);
         } else {
           console.log("Bravo! Nouveau fournisseur ajouté.");
           // Je redirige vers la page d'accueil
-          res.status(300).redirect("/accueil");
+          res.status(302).redirect("/api/accueil");
         };
       });
     };
