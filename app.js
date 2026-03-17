@@ -49,8 +49,8 @@ app.get('/', (req,res) => {   // Pas de next car c'est des route et pas des midd
 });
 
 
-// API ROUTE pour la page d'accueil
-app.get('/api/accueil', (req, res) => {
+// API ROUTE pour la page equipe
+app.get('/api/equipe', (req, res) => {
   console.log("Je passe dans /api/accueil");
 
 
