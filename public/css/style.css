@@ -1,7 +1,9 @@
 h1 {
-    color: brown;
+    color: white;
 }
-
+p {
+  color: white;
+}
 .conteneur-equipe {
     display: flex;
     flex-wrap: wrap; /* Très important : permet aux cartes de passer à la ligne s'il n'y a plus de place sur l'écran */
@@ -65,4 +67,24 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+
+body {
+    /* 1. On indique le chemin de l'image */
+    background-image: url('/images/mayGourmet.png'); 
+    
+    /* 2. On s'assure qu'elle prenne tout l'écran sans être déformée */
+    background-size: cover; 
+    
+    /* 3. On centre l'image */
+    background-position: center; 
+    
+    /* 4. On empêche l'image de se répéter comme une mosaïque si l'écran est grand */
+    background-repeat: no-repeat; 
+    
+    /* 5. Optionnel : l'image reste fixe quand tu descends (scroll) sur la page */
+    background-attachment: fixed; 
+
+    font-size: 35px;
+    font-weight: bold;
 }
