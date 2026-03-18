@@ -13,6 +13,8 @@
  <%- include('navbar') -%>
 
     <h1>Mon equipe de choc</h1>
+    <br>
+     <button id="myBtn">Ajouter un membre</button>
 
     <div class="conteneur-equipe">
         <% resultatEquipe.forEach(resultat => { %>
@@ -22,7 +24,7 @@
                     <h4><b><%= resultat.nom %> <%= resultat.prenom %></b></h4>
                     <p class="cc"> <%= resultat.poste %> </p> <br>
                     <input type="button" value="supprimer" onclick="supprimer('<%=resultat.id %>')">
-                    <button id="myBtn">Ajouter un membre</button>
+                    
 
                 </div>
             </div>
@@ -66,26 +68,55 @@
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="country">Country</label>
+        <label for="mail">Mail :</label>
       </div>
       <div class="col-75">
-        <select id="country" name="country">
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-          <option value="usa">USA</option>
-        </select>
+        <input type="email" id="mail" name="mail" placeholder="Votre mail">
       </div>
     </div>
     <div class="row">
       <div class="col-25">
-        <label for="subject">Subject</label>
+        <label for="telephone">Telephone :</label>
       </div>
       <div class="col-75">
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        <input type="number" id="telephone" name="telephone" placeholder="Votre numero">
       </div>
     </div>
     <div class="row">
-      <input type="submit" value="Submit">
+      <div class="col-25">
+        <label for="poste">Poste :</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="poste" name="poste" placeholder="Votre poste">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="a_postale">Adresse postale :</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="a_postale" name="a_postale" placeholder="Votre adresse postale">
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-25">
+        <label for="presentation">Présentation</label>
+      </div>
+      <div class="col-75">
+        <textarea id="presentation" name="presentation" placeholder="A propos de vous" style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Enregistrer">
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="d_recrutement">Date de recrutement :</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="d_recrutement" name="d_recrutement" placeholder="Votre date de recrutement">
+      </div>
     </div>
   </form>
 

@@ -9,6 +9,7 @@ p {
     flex-wrap: wrap; /* Très important : permet aux cartes de passer à la ligne s'il n'y a plus de place sur l'écran */
     gap: 20px; /* Crée un bel espace entre chaque carte */
     justify-content: center; /* Centre tes cartes au milieu de la page */
+    
 }
 
 
@@ -22,6 +23,9 @@ p {
   align-items: center;
   padding: 10px;
   color: black;
+  margin: 80px 0;
+  padding: 55px 0;
+  line-height: 1.6;
 }
 
 .card:hover {
@@ -69,6 +73,7 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
   color: black;
+  
 }
 
 body {

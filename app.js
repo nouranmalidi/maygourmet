@@ -126,9 +126,41 @@ app.delete('/api/equipe/:id', (req,res) => {
 /**
  * API pour ajouter un membre d'équipe
  * Le membre sera inséré dans la table équipe
+ * J'ajoute un nouveau membre a l'équipe avec la méthode post
  */
 app.post("/api/equipe", (req,res) => {
-// a compléter
+console.log("Corps de la requête équipe: ", req.body);
+const nomEquipe = req.body.nom;
+const prenomEquipe = req.body.prenom;
+const mailEquipe = req.body.mail;
+const telephoneEquipe = req.body.telephone;
+const posteEquipe = req.body.poste;
+const adressePostaleEquipe = req.body.a_postale;
+const presentationEquipe = req.body.presentation;
+const dateRecrutementEquipe = req.body.d_recrutement;
+
+const SQL = "INSERT INTO equipe (nom, prenom, mail, telephone, poste, adresse_postale, presentation, date_recrutement) values (?,?,?,?,?,?,?,?)";
+
+const ordreChamp = [nomEquipe,prenomEquipe,mailEquipe,telephoneEquipe,posteEquipe,adressePostaleEquipe,presentationEquipe,dateRecrutementEquipe];
+
+// Je me connecte à la BDD 
+  req.getConnection((erreur,connection) => {
+    if(erreur) {
+      console.log("Erreur de connection à la BDD : ", erreur);
+    } else { // Si je réussi a me connecter à la BDD
+      connection.query(SQL, ordreChamp, (err, nouveauEquipe) => {
+        if(err) {
+          console.log("Erreur d'ajout d'un membre d'equipe: ", err);
+        } else {
+          console.log("Bravo! Nouveau membre d'équipe ajouté.");
+          // Je redirige vers la page d'accueil
+          res.status(302).redirect("/api/accueil");
+        };
+      });
+    };
+
+  });
+
 });
 
 
