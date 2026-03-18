@@ -1,8 +1,8 @@
 CREATE TABLE equipe (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    nom VARCHAR(155) NOT NULL, --VARCHAR est pour les string equivaut au nombre de caractère utilisable--
-    prenom VARCHAR(155) NOT NULL,  --NOT NULL c'est-à-dire qu'il est obligatoire de mettre un champ--
-    mail VARCHAR(100), -- Ce champ là n'est pas obligatoire--
+    nom VARCHAR(155) NOT NULL, 
+    prenom VARCHAR(155) NOT NULL,  
+    mail VARCHAR(100), 
     telephone VARCHAR(100) NOT NULL,
     poste VARCHAR(80) NOT NULL,
     adresse_postale VARCHAR(150) NOT NULL,

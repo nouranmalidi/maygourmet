@@ -86,12 +86,12 @@ app.get('/api/equipe', (req, res) => {
 });
 
 // API ROUTE pour la page equipe
-app.get('/api/equipe', (req, res) => {
-  console.log("Je passe dans /api/equipe");
+//app.get('/api/equipe', (req, res) => {
+  //console.log("Je passe dans /api/equipe");
 
-  res.render('equipe'); //res.render chercher un fichier dans ./views
+  //res.render('equipe'); //res.render chercher un fichier dans ./views
 
-});
+//});
 
 // J'accède à la route accueil
 app.get('/api/accueil', (req,res) => {
@@ -123,8 +123,13 @@ app.delete('/api/equipe/:id', (req,res) => {
   });
 });
 
-
-
+/**
+ * API pour ajouter un membre d'équipe
+ * Le membre sera inséré dans la table équipe
+ */
+app.post("/api/equipe", (req,res) => {
+// a compléter
+});
 
 
 // J'ajoute un fournisseur dans la table fournisseur. Pour cela, j'utilise la méthose POST

@@ -5,37 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipe de May Gourmet</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <!--Il faut pas oublier le defer-->
+    <script src="/javascript/script.js" defer></script>
 </head>
 <body>
-    <!-- inclure le fichier navbar.ejs pour avoir la barre de navigation -->
-    <%- include('navbar') -%>
+ <%- include('navbar') -%>
+
+    <h1>Mon equipe de choc</h1>
+
+    <div class="conteneur-equipe">
+        <% resultatEquipe.forEach(resultat => { %>
+            <div class="card">
+                <img src="/images/avatar1.png" alt="Avatar" style="width:65%">
+                <div class="container">
+                    <h4><b><%= resultat.nom %> <%= resultat.prenom %></b></h4>
+                    <p class="cc"> <%= resultat.poste %> </p> <br>
+                    <input type="button" value="supprimer" onclick="supprimer('<%=resultat.id %>')">
+                    <button id="myBtn">Ajouter un membre</button>
+
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <h2></h2>
 
 
-<h1>Mon equipe de choc</h1>
+<div id="myModal" class="modal">
 
-<div class ="conteneur-equipe">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Bienvenue</h2>
+    </div>
+    <div class="modal-body">
+      <p>Enregistrer une nouvelle personne</p>
+      <p>Formulaire d'inscription</p>
 
-<% resultatEquipe.forEach(resultat => { %>
-    <div class="card">
-  <img src="/images/avatar1.png" alt="Avatar" style="width:65%">
-  <div class="container">
-    <h4><b><%= resultat.nom %> <%= resultat.prenom %></b></h4>
-    <p> <%= resultat.poste %> </p> <br>
-    <input type="button" value="supprimer" onclick="supprimer('<%=resultat.id %>')">
+
+      <div class="container">
+        <!--Il faut créer un API post equipe dans app.js-->
+  <form action="/api/equipe" method="post"> 
+    <div class="row">
+      <!--div class row créer une bordure pour le formulaire-->
+      <div class="col-25">
+        <label for="nom">Nom :</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="nom" name="nom" placeholder="Votre nom">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="prenom">Prenom :</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="prenom" name="prenom" placeholder="Votre prenom">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country">Country</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="subject">Subject</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+</div>
+    </div>
+    <div class="modal-footer">
+      <button>Enregistrer</button>
+    </div>
   </div>
 
 </div>
+
     
-<% }) %>
-
-</div>
-
-
-
 </body>
-
-<script src="/public/javascript/script" defer>
-    
-</script>
-
 </html>
