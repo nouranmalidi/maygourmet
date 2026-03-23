@@ -71,7 +71,9 @@ app.get('/api/equipe', (req, res) => {
       });
     }
   });
+  });
 
+  
   //res.render('accueil'); //res.render chercher un fichier dans ./views
 
   // Le type d'encodage du texte retourné en réponse
@@ -83,7 +85,7 @@ app.get('/api/equipe', (req, res) => {
 // Fin de la réponse
 //res.end();
 
-});
+
 
 // API ROUTE pour la page equipe
 //app.get('/api/equipe', (req, res) => {
@@ -122,6 +124,12 @@ app.delete('/api/equipe/:id', (req,res) => {
     }
   });
 });
+
+
+app.put('/api/equipe/:id', (req,res) => {
+  
+});
+
 
 /**
  * API pour ajouter un membre d'équipe
