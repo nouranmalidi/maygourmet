@@ -23,11 +23,7 @@
                 <div class="container">
                     <h4><b><%= resultat.nom %> <%= resultat.prenom %></b></h4>
                     <p class="cc"> <%= resultat.poste %> </p> <br>
-                    <input type="button" value="modifier" class="boutonModifier" onclick="modifier(
-                    '<%=resultat.id %>', '<%=resultat.nom %>', '<%=resultat.prenom %>',
-                    '<%=resultat.mail %>','<%=resultat.telephone %>','<%=resultat.poste %>',
-                    '<%=resultat.adresse_postale %>','<%=resultat.presentation %>',
-                    '<%=resultat.date_recrutement %>')">
+                    <input type="button" value="modifier" class="boutonModifier" onclick='modifier(<%- JSON.stringify([resultat.id, resultat.nom, resultat.prenom, resultat.mail, resultat.telephone, resultat.poste, resultat.adresse_postale, resultat.presentation, resultat.date_recrutement]) %>)' >
                     <input type="button" value="supprimer" onclick="supprimer('<%=resultat.id %>')">
                     
 
@@ -54,6 +50,7 @@
       <div class="container">
         <!--Il faut créer un API post equipe dans app.js-->
   <form action="/api/equipe" method="post"> 
+    <input type="hidden" id="id" name="id">
     <div class="row">
       <!--div class row créer une bordure pour le formulaire-->
       <div class="col-25">

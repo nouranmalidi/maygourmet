@@ -37,24 +37,26 @@ window.onclick = function(event) {
   }
 }
 
-function modifier(id) {
-       const routeComplete = '/api/equipe/'+ id;
-
-       fetch(
-        routeComplete, {method: "PUT"}
-       ).then(
-        (reponse) => response.json()
-       ).then(
-        (donnee) => window.location.href = donnee.routeAccueil
-       ).catch((erreur) => console.log(erreur)
-       )
-    };
-
-
-    // Récupération du bouton qui ouvre le modal modification
-    let boutonModalModifier = document.querySelectorAll("#boutonModifier");
+function modifier(params) {
+    if (!modal) {
+        console.error("Modal not found");
+        return;
+    }
+    const [id, nom, prenom, mail, tel, poste, adresse, pres, date] = params;
     
-    // Lorsque l'utilisateur clique sur le bouton, le modal s'ouvre
-    boutonModalModifier.onclick = function() {
-      modal.style.display = "block";
-    };
+    modal.style.display = "block";
+    
+    document.getElementById("id").value = id;
+    document.getElementById("nom").value = nom;
+    document.getElementById("prenom").value = prenom;
+    document.getElementById("mail").value = mail;
+    document.getElementById("telephone").value = tel;
+    document.getElementById("poste").value = poste;
+    document.getElementById("a_postale").value = adresse;
+    document.getElementById("presentation").value = pres;
+    if(date) {
+        document.getElementById("d_recrutement").value = date;
+    }
+};
+
+

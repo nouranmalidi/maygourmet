@@ -138,6 +138,7 @@ app.put('/api/equipe/:id', (req,res) => {
  */
 app.post("/api/equipe", (req,res) => {
 console.log("Corps de la requête équipe: ", req.body);
+const idEquipe = req.body.id;
 const nomEquipe = req.body.nom;
 const prenomEquipe = req.body.prenom;
 const mailEquipe = req.body.mail;
@@ -147,20 +148,28 @@ const adressePostaleEquipe = req.body.a_postale;
 const presentationEquipe = req.body.presentation;
 const dateRecrutementEquipe = req.body.d_recrutement;
 
-const SQL = "INSERT INTO equipe (nom, prenom, mail, telephone, poste, adresse_postale, presentation, date_recrutement) values (?,?,?,?,?,?,?,?)";
+let SQL, ordreChamp;
 
-const ordreChamp = [nomEquipe,prenomEquipe,mailEquipe,telephoneEquipe,posteEquipe,adressePostaleEquipe,presentationEquipe,dateRecrutementEquipe];
+if (idEquipe) {
+  // Modification
+  SQL = "UPDATE equipe SET nom=?, prenom=?, mail=?, telephone=?, poste=?, adresse_postale=?, presentation=?, date_recrutement=? WHERE id=?";
+  ordreChamp = [nomEquipe,prenomEquipe,mailEquipe,telephoneEquipe,posteEquipe,adressePostaleEquipe,presentationEquipe,dateRecrutementEquipe, idEquipe];
+} else {
+  // Ajout
+  SQL = "INSERT INTO equipe (nom, prenom, mail, telephone, poste, adresse_postale, presentation, date_recrutement) values (?,?,?,?,?,?,?,?)";
+  ordreChamp = [nomEquipe,prenomEquipe,mailEquipe,telephoneEquipe,posteEquipe,adressePostaleEquipe,presentationEquipe,dateRecrutementEquipe];
+}
 
 // Je me connecte à la BDD 
   req.getConnection((erreur,connection) => {
     if(erreur) {
       console.log("Erreur de connection à la BDD : ", erreur);
     } else { // Si je réussi a me connecter à la BDD
-      connection.query(SQL, ordreChamp, (err, nouveauEquipe) => {
+      connection.query(SQL, ordreChamp, (err, result) => {
         if(err) {
-          console.log("Erreur d'ajout d'un membre d'equipe: ", err);
+          console.log("Erreur d'ajout/modification d'un membre d'equipe: ", err);
         } else {
-          console.log("Bravo! Nouveau membre d'équipe ajouté.");
+          console.log(idEquipe ? "Bravo! Membre d'équipe modifié." : "Bravo! Nouveau membre d'équipe ajouté.");
           // Je redirige vers la page d'accueil
           res.status(302).redirect("/api/accueil");
         };
