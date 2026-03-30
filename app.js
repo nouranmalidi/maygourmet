@@ -1,7 +1,7 @@
 // Ici, nous créons nottre application EpressJS
 
 // J'importe le framework ExpressJS
-const console = require('console');
+//const console = require('console'); La console est native dans Node.js 
 const express = require ('express');
 
 // J'importe le pilote Mysql2 utlisé pour intorroger la BDD MySQL
@@ -213,10 +213,21 @@ app.post('/api/fournisseur', (req,res) => {
 
   });
 });
+
 // J'accède a la route grâce a ce code
 app.get('/api/fournisseur', (req,res) => {
   res.render("fournisseur");
 });
+
+// J'accède à la route plats
+app.get('/api/plats', (req,res) => {
+  res.render("plats");
+});
+
+
+
+
+
 
 
 
